@@ -17,7 +17,7 @@ def login():
         if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
             st.session_state.logueado = True
             st.session_state.usuario = usuario
-            st.success("Inicio de sesión exitoso ✨")
+            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
             st.experimental_rerun()
         else:
             st.error("Usuario o contraseña incorrectos 💔")
