@@ -1,9 +1,12 @@
 import streamlit as st
 
-def main():
-    st.title("📊 Métricas de Ventas")
-    st.write("Aquí podrás ver cómo van tus ventas, desayunos entregados y más.")
-    st.write("💡 Próximamente: gráficos, tablas y magia.")
+if 'logueado' not in st.session_state or not st.session_state.logueado:
+    st.warning("Por favor, inicia sesión para acceder.")
+    st.stop()
 
-if __name__ == "__main__":
-    main()
+st.title("📊 Métricas")
+st.write("Aquí podrás ver estadísticas y métricas de tus ventas. 📈")
+
+# Ejemplo de métrica visual (mock)
+st.metric("Ventas esta semana", "12", "+3")
+st.metric("Total recaudado", "$245", "+$50")
