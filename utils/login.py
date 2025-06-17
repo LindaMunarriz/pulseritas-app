@@ -1,11 +1,10 @@
+# utils/login.py
 import streamlit as st
-# La siguiente línea es nueva, para poder cambiar de página
-from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 # Diccionario de usuarios válidos
 USUARIOS = {
     "linda": "pulseritas123",
-    "daira": "pulseras456"
+    "daira": "pulseritas456"
 }
 
 def login():
@@ -20,9 +19,8 @@ def login():
             st.session_state.logueado = True
             st.session_state.usuario = usuario
             
-            # NOTA: He quitado el st.success y el st.rerun()
-            # Ahora los reemplazamos por esta línea mágica:
-            st.switch_page("pages/1_Inicio.py")
+            # <-- CAMBIO CLAVE: Redirigimos a la página de inicio usando solo el nombre del archivo
+            st.switch_page("1_Inicio.py")
             
         else:
             st.error("Usuario o contraseña incorrectos 💔")
