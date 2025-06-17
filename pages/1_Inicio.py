@@ -1,10 +1,9 @@
 import streamlit as st
 
-def main():
-    usuario = st.session_state.get("usuario", "amiga")
-    st.title(f"¡Hola, {usuario.capitalize()}! 🌈✨")
-    st.write("Esta es nuestra app para reportar ventas, ver métricas y seguir alimentando sonrisas.")
-    st.write("Usa el menú lateral para navegar. 🧵🪡")
+if 'logueado' not in st.session_state or not st.session_state.logueado:
+    st.warning("Por favor, inicia sesión para acceder.")
+    st.stop()
 
-if __name__ == "__main__":
-    main()
+st.title("🏠 Inicio")
+st.write(f"¡Bienvenida, {st.session_state.usuario.capitalize()}! 🌈✨")
+st.write("Esta es la página de inicio. Usa el menú lateral para navegar por la app. 💖")
