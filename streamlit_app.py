@@ -1,35 +1,38 @@
 import streamlit as st
 from utils.login import login
 
-# Inicializar estados de sesión si no existen
+# Inicializa sesión si no existe
 if "logueado" not in st.session_state:
     st.session_state.logueado = False
 if "usuario" not in st.session_state:
     st.session_state.usuario = ""
 
-# Login
+# Si no está logueado, mostramos pantalla de login
 if not st.session_state.logueado:
-    st.title("💖 Bienvenida a Pulseritas Co 💖")
-    st.subheader("Inicia sesión para entrar a la magia ✨")
-
-    usuario = st.text_input("👩‍💻 Usuario").lower()
-    contraseña = st.text_input("🔑 Contraseña", type="password")
-
-    if st.button("Entrar"):
-        if login(usuario, contraseña):
-            st.session_state.logueado = True
-            st.session_state.usuario = usuario
-            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
-            st.experimental_rerun()
-        else:
-            st.error("Usuario o contraseña incorrectos 💔")
-
-# Si ya está logueado, mostrar bienvenida general
+    login()
 else:
+    # Menú lateral
     st.sidebar.title("Menú 💖")
-    st.sidebar.success("Usa el menú para navegar por la app.")
+    page = st.sidebar.radio("Ir a:", ["Inicio", "Reporte de Ventas", "Métricas", "Cerrar sesión"])
+
+    # Página principal
     st.title(f"¡Hola, {st.session_state.usuario.capitalize()}! 🌈✨")
-    st.markdown("""
-    Esta es nuestra app para reportar ventas, ver métricas y seguir alimentando sonrisas.  
-    Usa el menú lateral para navegar. 🧵🪡
-    """)
+
+    if page == "Inicio":
+        st.markdown("""
+        Esta es nuestra app para reportar ventas, ver métricas y seguir alimentando sonrisas.  
+        Usa el menú lateral para navegar. 🧵🪡
+        """)
+    
+    elif page == "Reporte de Ventas":
+        st.subheader("🧾 Reporte de Ventas")
+        st.write("Aquí irán los formularios para registrar tus ventas.")
+    
+    elif page == "Métricas":
+        st.subheader("📊 Métricas")
+        st.write("Aquí verás datos de tus ventas, desayunos entregados y más.")
+    
+    elif page == "Cerrar sesión":
+        st.session_state.logueado = False
+        st.session_state.usuario = ""
+        st.experimental_rerun()
