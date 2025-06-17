@@ -9,7 +9,11 @@ if "usuario" not in st.session_state:
 
 # Si no está logueado, mostramos pantalla de login
 if not st.session_state.logueado:
-    login()
+    success, usuario = login()
+    if success:
+        st.session_state.logueado = True
+        st.session_state.usuario = usuario
+        st.experimental_rerun()
 else:
     # Menú lateral
     st.sidebar.title("Menú 💖")
