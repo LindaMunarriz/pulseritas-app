@@ -13,12 +13,11 @@ def login():
     usuario = st.text_input("👩‍💻 Usuario").lower()
     contraseña = st.text_input("🔑 Contraseña", type="password")
 
-    login_clicado = st.button("Entrar")
-
-    if login_clicado:
+    if st.button("Entrar"):
         if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
-            return True, usuario
+            st.session_state.logueado = True
+            st.session_state.usuario = usuario
+            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
+            st.rerun()
         else:
             st.error("Usuario o contraseña incorrectos 💔")
-            return False, ""
-    return False, ""
