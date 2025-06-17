@@ -6,7 +6,7 @@ USUARIOS = {
     "daira": "pulseritas456"
 }
 
-# Estado de sesión: si no existe, lo creamos
+# Estado de sesión
 if "logueado" not in st.session_state:
     st.session_state.logueado = False
 if "usuario" not in st.session_state:
@@ -25,19 +25,16 @@ if not st.session_state.logueado:
             st.session_state.logueado = True
             st.session_state.usuario = usuario
             st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
+            st.stop()  # ⛔ Para aquí, y la próxima vez ya entra al contenido
         else:
             st.error("Usuario o contraseña incorrectos 💔")
 
-    # Esto se revisa siempre después del botón
-    if st.session_state.logueado:
-        st.experimental_rerun()
-
 else:
-    # Contenido de la app ya logueado
+    # Si ya está logueado, mostrar la app completa
     st.sidebar.title("Menú 💖")
     page = st.sidebar.radio("Ir a:", ["Inicio", "Reporte de Ventas", "Métricas", "Cerrar sesión"])
 
-    st.title(f"¡Hola, {st.session_state.usuario.capitalize()}! 🌈✨")
+    st.title(f"¡Hola, {st.session_state.usuario.capitalize()}! 💗✨")
 
     if page == "Inicio":
         st.markdown("""
