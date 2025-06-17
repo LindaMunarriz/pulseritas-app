@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.auth import login
+from utils.login import login
 
 # Inicializar estados de sesión si no existen
 if "logueado" not in st.session_state:
