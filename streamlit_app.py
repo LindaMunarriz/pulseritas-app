@@ -24,9 +24,14 @@ if not st.session_state.logueado:
         if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
             st.session_state.logueado = True
             st.session_state.usuario = usuario
-            st.experimental_rerun()
+            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
         else:
             st.error("Usuario o contraseña incorrectos 💔")
+
+    # Esto se revisa siempre después del botón
+    if st.session_state.logueado:
+        st.experimental_rerun()
+
 else:
     # Contenido de la app ya logueado
     st.sidebar.title("Menú 💖")
