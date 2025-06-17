@@ -1,9 +1,5 @@
 import streamlit as st
 
-if 'logueado' not in st.session_state or not st.session_state.logueado:
-    st.warning("Por favor, inicia sesión para acceder.")
-    st.stop()
-
-st.title("🏠 Inicio")
-st.write(f"¡Bienvenida, {st.session_state.usuario.capitalize()}! 🌈✨")
-st.write("Esta es la página de inicio. Usa el menú lateral para navegar por la app. 💖")
+st.title("💗 Pulseritas Co - Inicio")
+st.write("¡Bienvenida a la app interna de Pulseritas Co! 💖")
+st.write("Desde aquí podrás registrar tus ventas y ver el impacto mágico que estás logrando 🧚‍♀️✨")
