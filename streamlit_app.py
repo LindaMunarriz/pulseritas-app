@@ -6,13 +6,15 @@ USUARIOS = {
     "daira": "pulseritas456"
 }
 
-# Estado de sesión: si no existe, lo creamos
+# Estado de sesión
 if "logueado" not in st.session_state:
     st.session_state.logueado = False
 if "usuario" not in st.session_state:
     st.session_state.usuario = ""
+if "mostrar_home" not in st.session_state:
+    st.session_state.mostrar_home = False
 
-# Pantalla de login
+# Login
 if not st.session_state.logueado:
     st.title("💖 Bienvenida a Pulseritas Co 💖")
     st.subheader("Inicia sesión para entrar a la magia ✨")
@@ -24,13 +26,12 @@ if not st.session_state.logueado:
         if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
             st.session_state.logueado = True
             st.session_state.usuario = usuario
-            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
-            st.experimental_rerun()  # Redirige automáticamente
+            st.success("Inicio de sesión exitoso ✨ ¡Vamos allá!")
         else:
             st.error("Usuario o contraseña incorrectos 💔")
 
-# Pantalla de contenido (después del login)
-else:
+# Home después del login
+if st.session_state.logueado:
     st.sidebar.title("Menú 💖")
     page = st.sidebar.radio("Ir a:", ["Inicio", "Reporte de Ventas", "Métricas", "Cerrar sesión"])
 
@@ -50,4 +51,4 @@ else:
     elif page == "Cerrar sesión":
         st.session_state.logueado = False
         st.session_state.usuario = ""
-        st.experimental_rerun()
+        st.experimental_rerun()  # Esto sí lo permitimos acá
