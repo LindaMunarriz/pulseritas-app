@@ -18,6 +18,6 @@ def login():
             st.session_state.logueado = True
             st.session_state.usuario = usuario
             st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
-            st.experimental_rerun()
+            st.rerun() # <- Esta es la corrección
         else:
             st.error("Usuario o contraseña incorrectos 💔")
