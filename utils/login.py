@@ -1,9 +1,11 @@
 import streamlit as st
+# La siguiente línea es nueva, para poder cambiar de página
+from streamlit.runtime.scriptrunner import get_script_run_ctx
 
 # Diccionario de usuarios válidos
 USUARIOS = {
     "linda": "pulseritas123",
-    "daira": "pulseritas456"
+    "daira": "pulseras456"
 }
 
 def login():
@@ -17,7 +19,10 @@ def login():
         if usuario in USUARIOS and USUARIOS[usuario] == contraseña:
             st.session_state.logueado = True
             st.session_state.usuario = usuario
-            st.success("Inicio de sesión exitoso ✨ Redirigiendo...")
-            st.rerun() # <- Esta es la corrección
+            
+            # NOTA: He quitado el st.success y el st.rerun()
+            # Ahora los reemplazamos por esta línea mágica:
+            st.switch_page("pages/1_Inicio.py")
+            
         else:
             st.error("Usuario o contraseña incorrectos 💔")
