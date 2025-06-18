@@ -1,12 +1,13 @@
 import streamlit as st
 from utils.login import login
 
-# Inicializamos variables de sesión
-if "logueado" not in st.session_state:
-    st.session_state.logueado = False
+st.set_page_config(page_title="Pulseritas Co", layout="centered")
 
-# Login
-if not st.session_state.logueado:
-    login()
-else:
-    st.sidebar.success(f"✨ ¡Bienvenida, {st.session_state.usuario}!")
+# Llamamos a la función login. Esta función:
+# - Muestra el formulario si no estás logueada
+# - Guarda el estado y rerun si sí estás logueada
+login()
+
+# Si el login fue exitoso, esta parte ya se ejecuta en el "segundo intento"
+st.sidebar.title("📁 Navegación")
+st.sidebar.success("Selecciona una página a la izquierda ☝️")
