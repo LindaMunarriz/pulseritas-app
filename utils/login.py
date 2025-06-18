@@ -7,11 +7,9 @@ USUARIOS = {
 }
 
 def check_login():
-    """Verifica si el usuario ya está logueado"""
     return st.session_state.get("logueado", False)
 
 def login():
-    """Renderiza el formulario de login y guarda sesión si es exitoso"""
     if check_login():
         return
 
@@ -26,6 +24,5 @@ def login():
             st.session_state.logueado = True
             st.session_state.usuario = usuario
             st.success("Inicio de sesión exitoso ✨ ¡Bienvenida!")
-            st.experimental_rerun()
         else:
             st.error("Usuario o contraseña incorrectos 💔")
