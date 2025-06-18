@@ -4,12 +4,11 @@ from utils.login import login, check_login
 
 st.set_page_config(page_title="Pulseritas Co", layout="centered")
 
-# Mostramos login si no ha iniciado sesión
 if not check_login():
     login()
-    st.stop()  # IMPORTANTE: evita que el resto del código se ejecute sin login
+    st.stop()  # Se detiene aquí si no ha iniciado sesión
 
-# Si sí está logueada, ahora sí mostramos el menú
+# Si pasa el login, se muestra el contenido principal
 st.sidebar.title("📁 Navegación")
 st.sidebar.success("Selecciona una página a la izquierda ☝️")
 
